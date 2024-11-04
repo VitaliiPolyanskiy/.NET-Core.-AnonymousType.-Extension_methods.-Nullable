@@ -15,6 +15,12 @@ namespace extension.methods
             int i = s.SymbolCount(c);
             // i = StringExtension.SymbolCount(s, c);
             Console.WriteLine("Буква '" + c + "' встречается в строке " + i + " раз");
+            string example = "Hello";
+            bool result = example.IsCapitalized();
+            if (result)
+                Console.WriteLine("Первая буква в верхнем регистре");
+            else
+                Console.WriteLine("Первая буква в нижнем регистре");
         }
     }
 
@@ -29,6 +35,13 @@ namespace extension.methods
                     counter++;
             }
             return counter;
+        }
+
+        public static bool IsCapitalized(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return false;
+            return char.IsUpper(str[0]);
         }
     }
 }
