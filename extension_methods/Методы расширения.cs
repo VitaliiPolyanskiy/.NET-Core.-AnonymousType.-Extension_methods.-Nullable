@@ -21,6 +21,8 @@ namespace extension.methods
                 Console.WriteLine("Первая буква в верхнем регистре");
             else
                 Console.WriteLine("Первая буква в нижнем регистре");
+            IAnimal myDog = new Dog("Buddy");
+            myDog.Greet();
         }
     }
 
@@ -42,6 +44,26 @@ namespace extension.methods
             if (string.IsNullOrEmpty(str))
                 return false;
             return char.IsUpper(str[0]);
+        }
+
+        public static void Greet(this IAnimal animal)
+        {
+            Console.WriteLine($"Hello, I am {animal.Name}!");
+        }
+    }
+
+    public interface IAnimal
+    {
+        string Name { get; }
+    }
+
+    public class Dog : IAnimal
+    {
+        public string Name { get; private set; }
+
+        public Dog(string name)
+        {
+            Name = name;
         }
     }
 }
